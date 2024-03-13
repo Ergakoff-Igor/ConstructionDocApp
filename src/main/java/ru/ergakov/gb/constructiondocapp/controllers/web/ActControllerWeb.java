@@ -1,4 +1,4 @@
-package ru.ergakov.gb.constructiondocapp.controllers;
+package ru.ergakov.gb.constructiondocapp.controllers.web;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-public class ActController {
+public class ActControllerWeb {
     private final ActService actService;
     @GetMapping("/acts")
     public String findAll(Model model) {
