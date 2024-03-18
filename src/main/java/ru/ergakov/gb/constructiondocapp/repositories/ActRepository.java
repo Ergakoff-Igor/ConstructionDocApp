@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ActRepository extends JpaRepository<Act, Long> {
 
-    @Query("SELECT e FROM Act e WHERE e.reportingPeriod= :reportingPeriod")
-    List<Act> findActByReportingPeriod(String reportingPeriod);
+//    @Query("SELECT e FROM Act e WHERE e.reportingPeriod= :reportingPeriod")
+//    List<Act> findActByReportingPeriod(String reportingPeriod);
 
 }

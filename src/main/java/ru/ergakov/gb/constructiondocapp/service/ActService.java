@@ -12,5 +12,5 @@ public interface ActService {
     Act getActById(Long id);
     Act updateAct(Act act);
     void deleteAct(Long id);
-    List<Act> findActByReportingPeriod(String reportingPeriod);
+//    List<Act> findActByReportingPeriod(String reportingPeriod);
 }

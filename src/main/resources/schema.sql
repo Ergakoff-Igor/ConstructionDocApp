@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS acts
+(
+    id      INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    mouth   VARCHAR(20) NOT NULL,
+    section VARCHAR(20) NOT NULL,
+    price   DOUBLE,
+    status  VARCHAR(20) NOT NULL
+);

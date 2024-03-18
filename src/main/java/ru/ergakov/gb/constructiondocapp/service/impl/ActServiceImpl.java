@@ -69,9 +69,9 @@ public class ActServiceImpl implements ActService {
         actRepository.delete(actById);
     }
 
-    @Override
-    public List<Act> findActByReportingPeriod(String reportingPeriod){
-        return actRepository.findActByReportingPeriod(reportingPeriod);
-    }
+//    @Override
+//    public List<Act> findActByReportingPeriod(String reportingPeriod){
+//        return actRepository.findActByReportingPeriod(reportingPeriod);
+//    }
 
 }

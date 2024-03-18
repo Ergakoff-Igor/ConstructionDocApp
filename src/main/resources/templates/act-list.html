@@ -24,8 +24,8 @@
             <tbody>
             <tr th:each="act : ${acts}">
                 <td th:text="${act.id}"></td>
-                <td th:text="${act.reportingPeriod}"></td>
-                <td th:text="${act.projectSection}"></td>
+                <td th:text="${act.mouth}"></td>
+                <td th:text="${act.section}"></td>
                 <td th:text="${act.price}"></td>
                 <td th:text="${act.status}"></td>
                 <td><a th:href="@{act-update/{id}(id=${act.id})}"><input type="submit" value="Изменить акт"></a></td>

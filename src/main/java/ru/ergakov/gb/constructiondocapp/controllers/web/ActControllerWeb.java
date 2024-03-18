@@ -52,10 +52,10 @@ public class ActControllerWeb {
         return "redirect:/acts";
     }
 
-    @GetMapping("/find-acts-by-period")
-    public String findActsByPeriod(Model model) {
-        List<Act> acts = actService.findActByReportingPeriod("February");
-        model.addAttribute("acts", acts);
-        return "act-list";
-    }
+//    @GetMapping("/find-acts-by-period")
+//    public String findActsByPeriod(Model model) {
+//        List<Act> acts = actService.findActByReportingPeriod("February");
+//        model.addAttribute("acts", acts);
+//        return "act-list";
+//    }
 }
