@@ -22,6 +22,26 @@ public class ActControllerWeb {
         return "act-list";
     }
 
+//    @GetMapping("/acts-admin")
+//    public String findAllAdmin(Model model) {
+//        List<Act> acts = actService.getAllActs();
+//        model.addAttribute("acts", acts);
+//        return "act-list-old";
+//    }
+
+    /**
+     * Метод получения списка всех актов для авторизованных пользователей
+     *
+     * @param model Model
+     * @return html представление списка всех актов
+     */
+    @GetMapping("/public-data")
+    public String findAllUser(Model model) {
+        List<Act> acts = actService.getAllActs();
+        model.addAttribute("acts", acts);
+        return "user-act-list";
+    }
+
     @GetMapping("/act-create")
     public String createActForm(Act ignoredAct) {
         return "act-create";
@@ -30,13 +50,13 @@ public class ActControllerWeb {
     @PostMapping("/act-create")
     public String createAct(Act act) {
         actService.createAct(act);
-        return "redirect:/acts";
+        return "redirect:/public-data";
     }
 
     @GetMapping("/act-delete/{id}")
     public String deleteAct(@PathVariable("id") Long id) {
         actService.deleteAct(id);
-        return "redirect:/acts";
+        return "redirect:/public-data";
     }
 
     @GetMapping("/act-update/{id}")
@@ -49,7 +69,27 @@ public class ActControllerWeb {
     @PostMapping("/act-update")
     public String updateAct(Act act) {
         actService.updateAct(act);
-        return "redirect:/acts";
+        return "redirect:/public-data";
+    }
+
+    /**
+     * Метод вызова ошибки авторизации
+     *
+     * @return http представление ответа об ошибке авторизации
+     */
+    @GetMapping("/access-denied")
+    public String accessDenied() {
+        return "access-denied";
+    }
+
+    /**
+     * Метод авторизации
+     *
+     * @return http представление формы авторизации
+     */
+    @GetMapping("/login")
+    public String auth() {
+        return "login-page";
     }
 
 //    @GetMapping("/find-acts-by-period")
