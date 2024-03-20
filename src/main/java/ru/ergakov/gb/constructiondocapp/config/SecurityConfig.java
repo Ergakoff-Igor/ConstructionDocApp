@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -21,7 +20,7 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/login", "/acts").permitAll()
-                        .requestMatchers("/public-data", "/act-create").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/act-create").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/acts-admin", "/act-update/**", "/act-delete/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
@@ -29,13 +28,13 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .loginProcessingUrl("/process_login")
                         .permitAll()
-                        .defaultSuccessUrl("/public-data")
+                        .defaultSuccessUrl("/acts")
                         .failureUrl("/login?error")
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/acts")
-						.invalidateHttpSession(true)
-				)
+                        .invalidateHttpSession(true)
+                )
                 .build();
     }
 

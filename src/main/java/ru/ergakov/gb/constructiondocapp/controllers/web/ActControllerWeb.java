@@ -15,19 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ActControllerWeb {
     private final ActService actService;
-    @GetMapping("/acts")
-    public String findAll(Model model) {
-        List<Act> acts = actService.getAllActs();
-        model.addAttribute("acts", acts);
-        return "act-list";
-    }
-
-//    @GetMapping("/acts-admin")
-//    public String findAllAdmin(Model model) {
-//        List<Act> acts = actService.getAllActs();
-//        model.addAttribute("acts", acts);
-//        return "act-list-old";
-//    }
 
     /**
      * Метод получения списка всех актов для авторизованных пользователей
@@ -35,11 +22,11 @@ public class ActControllerWeb {
      * @param model Model
      * @return html представление списка всех актов
      */
-    @GetMapping("/public-data")
+    @GetMapping("/acts")
     public String findAllUser(Model model) {
         List<Act> acts = actService.getAllActs();
         model.addAttribute("acts", acts);
-        return "user-act-list";
+        return "act-list";
     }
 
     @GetMapping("/act-create")
@@ -50,13 +37,13 @@ public class ActControllerWeb {
     @PostMapping("/act-create")
     public String createAct(Act act) {
         actService.createAct(act);
-        return "redirect:/public-data";
+        return "redirect:/acts";
     }
 
     @GetMapping("/act-delete/{id}")
     public String deleteAct(@PathVariable("id") Long id) {
         actService.deleteAct(id);
-        return "redirect:/public-data";
+        return "redirect:/acts";
     }
 
     @GetMapping("/act-update/{id}")
@@ -69,7 +56,7 @@ public class ActControllerWeb {
     @PostMapping("/act-update")
     public String updateAct(Act act) {
         actService.updateAct(act);
-        return "redirect:/public-data";
+        return "redirect:/acts";
     }
 
     /**
@@ -92,10 +79,4 @@ public class ActControllerWeb {
         return "login-page";
     }
 
-//    @GetMapping("/find-acts-by-period")
-//    public String findActsByPeriod(Model model) {
-//        List<Act> acts = actService.findActByReportingPeriod("February");
-//        model.addAttribute("acts", acts);
-//        return "act-list";
-//    }
 }
