@@ -1,27 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="UTF-8">
-<title>Изменение Акта</title>
+    <meta charset="UTF-8">
+    <title>Изменение Акта</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-<form action="#" th:action="@{/act-update}" th:object="${act}" method="post">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
-    <br/>
-    <label for="mouth">Месяц</label>
-    <input type="text" th:field="*{mouth}" id="mouth" placeholder="Месяц">
-    <br/>
-    <label for="section">Раздел проекта</label>
-    <input type="text" th:field="*{section}" id="section" placeholder="Раздел проекта">
-    <br/>
-    <label for="price">Стоимость</label>
-    <input type="text" th:field="*{price}" id="price" placeholder="Стоимость">
-    <br/>
-    <label for="status">Статус</label>
-    <input type="text" th:field="*{status}" id="status" placeholder="Статус">
-    <br/>
-    <input type="submit" value="Изменить акт">
-</form>
+<div class="container">
+    <h3 class="text-center">Изменение акта</h3>
+    <form action="#" th:action='@{/act-update}' th:object="${act}" method="post" class="form-custom">
+        <div class="mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="number" th:field="*{id}" id="id" placeholder="ID" class="form-control" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="month" class="form-label">Отчетный период</label>
+            <input list="datalistMouths" th:field="*{month}" id="month" placeholder="Отчетный период"
+                   class="form-control">
+            <datalist id="datalistMouths">
+                <option value="Январь">
+                <option value="Февраль">
+                <option value="Март">
+                <option value="Апрель">
+                <option value="Май">
+                <option value="Июнь">
+                <option value="Июль">
+                <option value="Август">
+                <option value="Сентябрь">
+                <option value="Октябрь">
+                <option value="Ноябрь">
+                <option value="Декабрь">
+            </datalist>
+        </div>
+        <div class="mb-3">
+            <label for="section" class="form-label">Раздел проекта</label>
+            <input type="text" th:field="*{section}" id="section" placeholder="Раздел проекта" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Стоимость</label>
+            <input type="text" th:field="*{price}" id="price" placeholder="Стоимость" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Статус</label>
+            <input list="datalistStatuses" th:field="*{status}" id="status" placeholder="Статус" class="form-control">
+            <datalist id="datalistStatuses">
+                <option value="Согласовано">
+                <option value="На проверке">
+                <option value="На устранении замечаний">
+            </datalist>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Изменить акт">
+        <!--        <input type="submit" value="Изменить акт">-->
+    </form>
+</div>
 </body>
 </html>

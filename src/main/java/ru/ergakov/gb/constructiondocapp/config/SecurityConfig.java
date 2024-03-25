@@ -11,10 +11,20 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * Конфигурация безопасности
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    /**
+     * Фильтр авторизации
+     *
+     * @param http HttpSecurity
+     * @return конфигурация фильтра
+     * @throws Exception любые исключения
+     */
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
@@ -38,11 +48,21 @@ public class SecurityConfig {
                 .build();
     }
 
+    /**
+     * Метод кодировки пароля
+     *
+     * @return DelegatingPasswordEncoder
+     */
     @Bean
     PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
+    /**
+     * Метод конфигурации пользователей
+     *
+     * @return new InMemoryUserDetailsManager
+     */
     @Bean
     UserDetailsManager inMemoryUserDetailsManager() {
         var user1 = User.withUsername("user").password("{noop}password").roles("USER").build();

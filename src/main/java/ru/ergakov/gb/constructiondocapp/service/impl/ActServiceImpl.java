@@ -9,7 +9,7 @@ import ru.ergakov.gb.constructiondocapp.service.ActService;
 import java.util.List;
 
 /**
- * Сервис заметок для передачи запросов в репозиторий
+ * Сервис заметок для передачи запросов в БД
  */
 @Service
 @RequiredArgsConstructor
@@ -68,10 +68,5 @@ public class ActServiceImpl implements ActService {
         Act actById = getActById(id);
         actRepository.delete(actById);
     }
-
-//    @Override
-//    public List<Act> findActByReportingPeriod(String reportingPeriod){
-//        return actRepository.findActByReportingPeriod(reportingPeriod);
-//    }
 
 }

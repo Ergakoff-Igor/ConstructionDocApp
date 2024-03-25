@@ -11,13 +11,16 @@ import ru.ergakov.gb.constructiondocapp.service.ActService;
 
 import java.util.List;
 
+/**
+ * Web-контроллер
+ */
 @Controller
 @AllArgsConstructor
 public class ActControllerWeb {
     private final ActService actService;
 
     /**
-     * Метод получения списка всех актов для авторизованных пользователей
+     * Метод получения списка всех актов
      *
      * @param model Model
      * @return html представление списка всех актов
@@ -29,23 +32,48 @@ public class ActControllerWeb {
         return "act-list";
     }
 
+    /**
+     * GET метод создания нового акта
+     *
+     * @param ignoredAct форма акта
+     * @return html представление страницы создания акта
+     */
     @GetMapping("/act-create")
     public String createActForm(Act ignoredAct) {
         return "act-create";
     }
 
+    /**
+     * POST метод создания акта
+     *
+     * @param act акт переданный из формы "act-create"
+     * @return html представление списка всех актов
+     */
     @PostMapping("/act-create")
     public String createAct(Act act) {
         actService.createAct(act);
         return "redirect:/acts";
     }
 
+    /**
+     * Метод удаления акта по id
+     *
+     * @param id id акта
+     * @return html представление списка всех актов
+     */
     @GetMapping("/act-delete/{id}")
     public String deleteAct(@PathVariable("id") Long id) {
         actService.deleteAct(id);
         return "redirect:/acts";
     }
 
+    /**
+     * GET метод изменения акта по id
+     *
+     * @param id    id акта
+     * @param model Model
+     * @return http форма изменения акта
+     */
     @GetMapping("/act-update/{id}")
     public String getOneAct(@PathVariable("id") Long id, Model model) {
         Act act = actService.getActById(id);
@@ -53,6 +81,12 @@ public class ActControllerWeb {
         return "act-update";
     }
 
+    /**
+     * POST метод изменения акта по id
+     *
+     * @param act акт переданный из формы "act-update"
+     * @return html представление списка всех актов
+     */
     @PostMapping("/act-update")
     public String updateAct(Act act) {
         actService.updateAct(act);

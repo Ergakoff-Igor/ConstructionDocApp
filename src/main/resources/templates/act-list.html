@@ -11,38 +11,46 @@
 <div th:switch="${acts}">
     <h2 th:case="null">Акты отсутствуют!</h2>
     <div th:case="*">
-        <h2>Акты</h2>
+        <h2 class="text-center">Акты</h2>
         <table class="table table-hover">
-            <thead>
+            <thead class="table-success">
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Месяц </th>
+                <th scope="col">Месяц</th>
                 <th scope="col">Раздел проекта</th>
                 <th scope="col">Стоимость</th>
                 <th scope="col">Статус</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
             <tr th:each="act : ${acts}">
                 <td th:text="${act.id}"></td>
-                <td th:text="${act.mouth}"></td>
+                <td th:text="${act.month}"></td>
                 <td th:text="${act.section}"></td>
                 <td th:text="${act.price}"></td>
                 <td th:text="${act.status}"></td>
-                <td sec:authorize="hasRole('ADMIN')"><a th:href="@{act-update/{id}(id=${act.id})}"><input type="submit" value="Изменить акт"></a></td>
-                <td sec:authorize="hasRole('ADMIN')"><a th:href="@{act-delete/{id}(id=${act.id})}"><input type="submit" value="Удалить акт"></a></td>
+                <td sec:authorize="hasRole('ADMIN')"><a th:href="@{act-update/{id}(id=${act.id})}"><input type="submit"
+                                                                                                          class="btn btn-outline-secondary"
+                                                                                                          value="Изменить акт"></a>
+                </td>
+                <td sec:authorize="hasRole('ADMIN')"><a th:href="@{act-delete/{id}(id=${act.id})}"><input type="submit"
+                                                                                                          class="btn btn-outline-danger"
+                                                                                                          value="Удалить акт"></a>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
-
-    <p sec:authorize="hasAnyRole('ADMIN', 'USER')"><a href="/act-create"><input type="submit" value="Создание акта"></a></p>
-    <form sec:authorize="isAnonymous()" th:method="GET" th:action="@{/login}">
-        <button class="btn btn-primary active">Войти</button>
+    <form class="text-center" sec:authorize="hasAnyRole('ADMIN', 'USER')" th:method="GET" th:action="@{/act-create}">
+        <button class="btn btn-success mt-3">Создание акта</button>
     </form>
-    <form sec:authorize="isAuthenticated()" th:method="POST" th:action="@{/logout}">
+    <form class="text-center" sec:authorize="isAnonymous()" th:method="GET" th:action="@{/login}">
+        <button class="btn btn-primary mt-3">Войти</button>
+    </form>
+    <form class="text-center" sec:authorize="isAuthenticated()" th:method="POST" th:action="@{/logout}">
         <button class="btn btn-danger mt-3">Выйти</button>
     </form>
-<!--    <p><a href="/logout"><input type="submit" value="Выход"></a></p>-->
 </div>
 </body>
