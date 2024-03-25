@@ -2,6 +2,7 @@
 ## Приложение для централизованного учета отчетных документов
 
 1. Вход в приложение через Web-контроллер: http://localhost:8080/acts
+
 Пароли для входа:
    * Login: user, password: password;
    * Login: admin, password: password.
