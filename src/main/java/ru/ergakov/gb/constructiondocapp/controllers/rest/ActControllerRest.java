@@ -51,16 +51,15 @@ public class ActControllerRest {
         return ResponseEntity.ok().build();
     }
 
-    /**
-     * Метод изменения акта
-     *
-     * @param act Акт, переданный в теле запроса
-     * @return статус выполнения запроса
-     */
-    @PutMapping
-    @ResponseBody
-    public ResponseEntity<Void> updateProduct(@RequestBody Act act) {
-        actService.updateAct(act);
-        return ResponseEntity.ok().build();
-    }
+//    /**
+//     * Метод изменения акта
+//     *
+//     * @param act Акт, переданный в теле запроса
+//     * @return статус выполнения запроса
+//     */
+//    @PutMapping
+//    @ResponseBody
+//    public ResponseEntity<Act> updateProduct(@RequestBody Act act) {
+//        return new ResponseEntity<>(actService.updateAct(act), HttpStatus.OK);
+//    }
 }

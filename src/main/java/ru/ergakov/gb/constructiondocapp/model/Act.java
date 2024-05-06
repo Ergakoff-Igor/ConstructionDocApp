@@ -3,6 +3,8 @@ package ru.ergakov.gb.constructiondocapp.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 
 /**
  * Модель акта
@@ -20,7 +22,16 @@ public class Act {
     private String section;
     @Column(name = "price")
     private Double price;
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private String status;
+    private ActStatus actStatus;
 
+    /**
+     * Метод конвертации статуса акта в string для шаблонизатора
+     *
+     * @return строковое значение статуса
+     */
+    public String actStatusToString() {
+        return this.actStatus.toString();
+    }
 }

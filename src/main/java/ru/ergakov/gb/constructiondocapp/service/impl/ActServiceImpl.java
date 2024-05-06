@@ -3,6 +3,7 @@ package ru.ergakov.gb.constructiondocapp.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.ergakov.gb.constructiondocapp.model.Act;
+import ru.ergakov.gb.constructiondocapp.model.ActStatus;
 import ru.ergakov.gb.constructiondocapp.repositories.ActRepository;
 import ru.ergakov.gb.constructiondocapp.service.ActService;
 
@@ -34,6 +35,7 @@ public class ActServiceImpl implements ActService {
      */
     @Override
     public Act createAct(Act act) {
+        act.setActStatus(ActStatus.CHECKING_QC);
         return actRepository.save(act);
     }
 
@@ -48,14 +50,17 @@ public class ActServiceImpl implements ActService {
         return actRepository.findById(id).orElseThrow(null);
     }
 
-    /**
-     * Метод изменения заметки по id
-     *
-     * @return обновленная заметка
-     */
     @Override
-    public Act updateAct(Act act) {
-        return actRepository.save(act);
+    public void updateAct(Long id, String month, String section, Double price) {
+        Act act = getActById(id);
+        if (act != null) {
+            act.setMonth(month);
+            act.setSection(section);
+            act.setPrice(price);
+            actRepository.save(act);
+        } else {
+            throw new RuntimeException("error");
+        }
     }
 
     /**
@@ -67,6 +72,18 @@ public class ActServiceImpl implements ActService {
     public void deleteAct(Long id) {
         Act actById = getActById(id);
         actRepository.delete(actById);
+    }
+
+    /**
+     * Обновить статус акта по ID
+     *
+     * @param id         уникальный идентификатор задачи
+     * @param actStatus новый статус акта
+     */
+    public void updateStatusById(Long id, ActStatus actStatus) {
+        Act actById = getActById(id);
+        actById.setActStatus(actStatus);
+        actRepository.save(actById);
     }
 
 }

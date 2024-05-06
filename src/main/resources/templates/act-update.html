@@ -41,15 +41,17 @@
             <label for="price" class="form-label">Стоимость</label>
             <input type="text" th:field="*{price}" id="price" placeholder="Стоимость" class="form-control">
         </div>
-        <div class="mb-3">
-            <label for="status" class="form-label">Статус</label>
-            <input list="datalistStatuses" th:field="*{status}" id="status" placeholder="Статус" class="form-control">
-            <datalist id="datalistStatuses">
-                <option value="Согласовано">
-                <option value="На проверке">
-                <option value="На устранении замечаний">
-            </datalist>
-        </div>
+<!--        <div class="mb-3">-->
+<!--            <label for="status" class="form-label">Статус</label>-->
+<!--            <input list="datalistStatuses" th:field="*{status}" id="status" placeholder="Статус" class="form-control">-->
+<!--            <datalist id="datalistStatuses">-->
+<!--                <option value="CORRECTION">-->
+<!--                <option value="CHECKING_QC">-->
+<!--                <option value="CHECKING_PTD">-->
+<!--                <option value="CHECKING_BD">-->
+<!--                <option value="ACCEPTED">-->
+<!--            </datalist>-->
+<!--        </div>-->
         <input type="submit" class="btn btn-primary" value="Изменить акт">
         <!--        <input type="submit" value="Изменить акт">-->
     </form>
